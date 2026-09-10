@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binaire Freznel AI Assessment</title>
+  <link rel="stylesheet" href="https://opensource.adobe.com/spectrum-css/dist/index-vars.css">
+  <style>
+    body { font-family: adobe-clean, sans-serif; margin: 0; background: #f5f5f5; }
+    .screen { padding: 20px; transition: all 0.5s ease; }
+    #dashboard-screen { display: none; opacity: 0; }
+    .auth-box { max-width: 400px; margin: 100px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .auth-box input { width: 100%; padding: 10px; margin-bottom: 15px; box-sizing: border-box; }
+    .auth-box button { width: 100%; padding: 10px; background: #0265dc; color: white; border: none; border-radius: 4px; cursor: pointer; margin-bottom: 10px; }
+    .error-text { color: #d32f2f; font-size: 13px; margin-bottom: 10px; }
+    .status-online { background: #d4edda; color: #155724; padding: 8px; text-align: center; }
+    .status-offline { background: #f8d7da; color: #721c24; padding: 8px; text-align: center; }
+  </style>
+</head>
+<body class="spectrum spectrum--light">
+
+  <div id="connection-status">Checking connection...</div>
+
+  <!-- Screen 1: Firebase Sign-Up / Login Screen (Task 2.5)[cite: 1] -->
+  <div id="auth-screen" class="screen">
+    <div class="auth-box">
+      <h2>Model App Authentication</h2>
+      <div id="auth-error" class="error-text"></div>
+      <input type="email" id="auth-email" placeholder="Email address">
+      <input type="password" id="auth-password" placeholder="Password">
+      <button id="login-btn">Log In</button>
+      <button id="signup-btn" style="background: #2e7d32;">Sign Up</button>
+    </div>
+  </div>
+
+  <!-- Screen 2: Main Search Dashboard -->
+  <div id="dashboard-screen" class="screen">
+    <h1>Model Searching Utility</h1>
+    <div class="controls" style="display: flex; gap: 10px; margin-bottom: 20px;">
+      <input type="text" id="search-input" placeholder="Search model name or family..." style="flex: 1; padding: 8px;">
+      <select id="pipeline-select" style="padding: 8px;">
+        <option value="">All Pipeline Tags</option>
+        <option value="text-generation">Text Generation</option>
+      </select>
+    </div>
+    <div id="model-list-container"></div>
+  </div>
+
+  <script type="module">
+    import { initAuthFlow } from './src/authUI.js';
+    import './src/ModelSearchApp.js';
+    
+    initAuthFlow();
+  </script>
+</body>
+</html>
